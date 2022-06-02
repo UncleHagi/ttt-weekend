@@ -10,37 +10,48 @@ let turn
 
 /*------------------------ Cached Element References ------------------------*/
 
-const squareEls = document.querySelector('board')
+const squareEls = document.querySelectorAll('.square')
 const messageE1 = document.getElementById('messege')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-board.addEventListener('click', function() {
-  handleClick()
+squareEls.forEach(function(square){
+  square.addEventListener('click', handleClick)
 })
 
 /*-------------------------------- Functions --------------------------------*/
 
 function init(){
-  var board = [ null, null, null, null, null, null, null, null, null]
-  let turn = 1
-  let winner = null
+  board = [ null, null, null, null, null, null, null, null, null]
+  turn = 1
+  winner = null
   render()
 }
 
 function render(){
-  board.forEach(function(pos){
+  board.forEach(function(pos, index){
     pos = squareEls(board.indexOf(pos))
   })
   if (winner === null){
-    return ("It's your turn player 1!")
+    return messageE1=("It's your turn player 1!")
   }if (winner === T){
-    return ("It's a Tie!!")
+    return messageE1=("It's a Tie!!")
   }else {
-    return ("Congrats Player ''! You have won!")
+    return messageE1=("Congrats Player ''! You have won!")
   }
 }
 
 function handleClick(evt){
+  console.log(evt)
+  console.log(evt.target)
+  console.log(evt.target.id)
+  const sqIdx = evt.target.id
+  board[sqIdx] = turn
+  turn = turn * -1
+  render()
 
+}
+
+function getWinner(){
+  
 }
