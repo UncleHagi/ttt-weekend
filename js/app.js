@@ -1,10 +1,10 @@
 /*-------------------------------- Constants --------------------------------*/
 
-const winningCombos = [[0, 1, 2], [3, 4, 5], [6, 7, 8],[0, 4, 8], [2, 4, 6], [0, 3, 6], [1, 4, 7], [2, 5, 8]]
+const winningCombos = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6], [0, 3, 6], [1, 4, 7], [2, 5, 8]]
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let winner 
+let winner
 let board
 let turn
 
@@ -15,41 +15,83 @@ const messageE1 = document.getElementById('message')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-squareEls.forEach(function(square){
+squareEls.forEach(function (square) {
   square.addEventListener('click', handleClick)
 })
 
 /*-------------------------------- Functions --------------------------------*/
 
-function init(){
-  board = [ null, null, null, null, null, null, null, null, null]
+init()
+
+function init() {
+  board = [null, null, null, null, null, null, null, null, null]
   turn = 1
   winner = null
   render()
 }
 
-function render(){
-  board.forEach(function(pos, index){
-    pos = squareEls(board.indexOf(pos))
-  })
-  if (winner === null){
-    return messageE1=("It's your turn player 1!")
-  }if (winner === T){
-    return messageE1=("It's a Tie!!")
-  }else {
-    return messageE1=("Congrats Player ''! You have won!")
+function playerTurn() {
+  if (turn === 1) {
+    return 'X';
+  } else {
+    return 'O';
   }
 }
 
-function handleClick(evt){
-  console.log(evt)
-  console.log(evt.target)
-  console.log(evt.target.id.substring(2))
-  const sqIdx = evt.target.id.substring(2)
+
+function render() {
+  board.forEach(function (board, idx) {
+    if (board === 1) {
+      squareEls[idx].textContent = 'X'
+    } else if (board === -1) {
+      squareEls[idx].textContent = '0'
+    } else if (board === null) {
+      squareEls[idx].textContent = ''
+    }
+    if (winner === null) {
+      return messageE1.textContent = (`It's your turn ${playerTurn()}!`)
+    } if (winner === 'T') {
+      return messageE1.textContent = ("It's a Tie!!")
+    } else if (winner === 1) {
+      return messageE1.textContent = (`Congrats ${playerTurn()}! You have won!`)
+    } else if (winner === -1) {
+      return messageE1.textContent = (`Congrats ${playerTurn()}! You have won!`)
+    }
+
+  })
+}
+
+function handleClick(evt) {
+  // console.log(evt)
+  // console.log(evt.target)
+  // console.log(evt.target.id)
+  const sqIdx = parseInt(evt.target.id.slice(2))
+  if (board[sqIdx] !== null) {
+    return
+  } if (winner !== null) {
+    return
+  }
   board[sqIdx] = turn
-  turn = turn * -1
+  turn = turn * - 1
   render()
 
+
+
+}
+
+function getWinner() {
+  for (let i = 0; i < winningCombos.length; i++) {
+    let total = board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]]
+    if (total === 3) {
+      winner = 1
+    } else if (total === -3) {
+      winner = -1
+    } else if (total !== 3 || -3) {
+      winner = 'T'
+    } else {
+      return null
+    }
+  }
 }
 
 // function getWinner(){
@@ -68,14 +110,7 @@ function handleClick(evt){
 //   )}
 
 // // if 3 winner 1
-// //if -3 winner -1
-//     if (sum === 3){
-//       winner = 1
-//     }else if (sum === -3){
-//       winner = -1
-//     }
-    
-    
+// //if -3 winner -
 //     let total = element.reduce((prev, num) => prev + num)
 //     console.log()
 
