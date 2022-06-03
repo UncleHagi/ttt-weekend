@@ -11,7 +11,7 @@ let turn
 /*------------------------ Cached Element References ------------------------*/
 
 const squareEls = document.querySelectorAll('.square')
-const messageE1 = document.getElementById('messege')
+const messageE1 = document.getElementById('message')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -44,14 +44,39 @@ function render(){
 function handleClick(evt){
   console.log(evt)
   console.log(evt.target)
-  console.log(evt.target.id)
-  const sqIdx = evt.target.id
+  console.log(evt.target.id.substring(2))
+  const sqIdx = evt.target.id.substring(2)
   board[sqIdx] = turn
   turn = turn * -1
   render()
 
 }
 
-function getWinner(){
-  
-}
+// function getWinner(){
+//   let total = 0
+//   const allSums = []
+//   winningCombos.forEach(function(element){
+//     const firstIndex = element[0]
+//     const secondIndex = element[1]
+//     const thirdIndex = element[2]
+//     const firstValue = board[firstIndex]
+//     const secondValue = board[secondIndex]
+//     const thirdValue = board[thirdIndex]
+//     const sum = firstValue + secondValue + thirdValue
+//     allSums.push(sum)
+//   }
+//   )}
+
+// // if 3 winner 1
+// //if -3 winner -1
+//     if (sum === 3){
+//       winner = 1
+//     }else if (sum === -3){
+//       winner = -1
+//     }
+    
+    
+//     let total = element.reduce((prev, num) => prev + num)
+//     console.log()
+
+
