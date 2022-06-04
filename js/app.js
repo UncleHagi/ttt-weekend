@@ -21,6 +21,7 @@ let turn
 
 const squareEls = document.querySelectorAll('.square')
 const messageEl = document.querySelector('#message')
+const resetBtnEl = document.querySelector('#Reset')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -28,6 +29,7 @@ squareEls.forEach(function (square) {
   square.addEventListener('click', handleClick)
 })
 
+resetBtnEl.addEventListener('click', init)
 /*-------------------------------- Functions --------------------------------*/
 
 init()
@@ -55,8 +57,10 @@ function handleClick(evt) {
   // console.log(evt)
   // console.log(evt.target)
   // console.log(evt.target.id)
-  console.log(board);
+  // console.log(board)
 }
+
+
 
 function render() {
   board.forEach(function (square, idx) {
@@ -95,6 +99,5 @@ function getWinner() {
   return null
 }
 
-  
 
 
