@@ -77,33 +77,24 @@ function render() {
     return (winner === 1 ? messageEl.textContent = "Congrats X! You're Winner!": messageEl.textContent = "Congrats O! You're the Winner!")
   }
 } 
-  // if (winner === null) {
-  //   turn === 1 ?messageEl.textContent = `It's your turn ${turn}!`
-  // } if (winner === 'T') {
-  //   messageEl.textContent = "It's a Tie!!"
-  // } if (winner === 1) {
-  //   messageEl.textContent = `Congrats ${winner}! You have won!`
-  // } if (winner === -1) {
-  //   messageEl.textContent = `Congrats ${winner}! You have won!`
-  // }
-    
-// }
+
 
 
 function getWinner() {
   let sum = 0
   for (let i = 0; i < winningCombos.length; i++) {
-      Math.abs = board[winningCombos[1][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]]
-    if (sum === 3) {
+    if (board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]] === 3){
       return 1
-    } else if (sum === -3) {
+    } else if (board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]] === -3){
       return -1
-    } else if (board.includes(null) === false) {
-      return 'T'
     } 
-    return null
-  }
-} 
+  } 
+  if (board.includes(null) === false) {
+    return 'T'
+  } 
+  return null
+}
+
   
 
 
