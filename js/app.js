@@ -78,7 +78,7 @@ function render() {
   } else if (winner === "T") {
     messageEl.textContent = "It's a Tie! "
   } else {
-    return (winner === 1 ? messageEl.textContent = "Congrats X! You're Winner!": messageEl.textContent = "Congrats O! You're the Winner!")
+    return (winner === 1 ? messageEl.textContent = "Congrats X! You're the Winner!": messageEl.textContent = "Congrats O! You're the Winner!")
   }
 } 
 
